@@ -1,16 +1,13 @@
+import {
+  AspectRatio,
+  Button,
+  Card,
+  CardContent,
+  CardOverflow,
+  Link,
+  Typography,
+} from "@mui/joy";
 import { Product } from "../../app/models/product";
-import { CardOverflow } from "@mui/joy";
-import * as React from "react";
-import AspectRatio from "@mui/joy/AspectRatio";
-import Button from "@mui/joy/Button";
-import Card from "@mui/joy/Card";
-import CardContent from "@mui/joy/CardContent";
-import Chip from "@mui/joy/Chip";
-import Link from "@mui/joy/Link";
-import Typography from "@mui/joy/Typography";
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
-import { Elevator } from "@mui/icons-material";
-import { Box } from "@mui/material";
 
 interface Props {
   product: Product;
@@ -18,7 +15,7 @@ interface Props {
 
 export default function ProductCard({ product }: Props) {
   return (
-    <Card>
+    <Card className="card" sx={{ boxShadow: "1px 2px 9px #808080" }}>
       <CardOverflow>
         <AspectRatio sx={{ minWidth: 200 }}>
           <img
@@ -34,6 +31,7 @@ export default function ProductCard({ product }: Props) {
           {product.type} / {product.brand}
         </Typography>
         <Link
+          sx={{ minHeight: "50px" }}
           href="#product-card"
           fontWeight="md"
           color="neutral"

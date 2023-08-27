@@ -1,68 +1,42 @@
-import {
-  AspectRatio,
-  Button,
-  Card,
-  CardContent,
-  CardOverflow,
-  Link,
-  Typography,
-} from "@mui/joy";
+import { Avatar, Button, Card, CardActions, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
 import { Product } from "../../app/models/product";
 
 interface Props {
-  product: Product;
+    product: Product;
 }
 
-export default function ProductCard({ product }: Props) {
-  return (
-    <Card className="card" sx={{ boxShadow: "1px 2px 9px #808080" }}>
-      <CardOverflow>
-        <AspectRatio sx={{ minWidth: 200 }}>
-          <img
-            src={product.pictureUrl}
-            srcSet={product.pictureUrl}
-            loading="lazy"
-            alt="product photo"
-          />
-        </AspectRatio>
-      </CardOverflow>
-      <CardContent>
-        <Typography level="body-xs">
-          {product.type} / {product.brand}
-        </Typography>
-        <Link
-          sx={{ minHeight: "50px" }}
-          href="#product-card"
-          fontWeight="md"
-          color="neutral"
-          textColor="text.primary"
-          overlay
-          // endDecorator={<ArrowOutwardIcon />}
-        >
-          {product.name}
-        </Link>
-
-        <Typography
-          level="title-lg"
-          sx={{ mt: 1, fontWeight: "xl" }}
-          // endDecorator={
-          //   <Chip component="span" size="sm" variant="soft" color="success">
-          //     Lowest price
-          //   </Chip>
-          // }
-        >
-          {(product.price / 100).toFixed(2)} €
-        </Typography>
-
-        <Typography level="body-sm">
-          (Only <b>{product.quantityInStock}</b> left in stock!)
-        </Typography>
-      </CardContent>
-      <CardOverflow>
-        <Button variant="solid" color="primary" size="lg">
-          Add to cart
-        </Button>
-      </CardOverflow>
-    </Card>
-  );
+export default function ProductCard({product} : Props) { 
+    return (
+        <Card>
+            <CardHeader 
+            avatar={
+                <Avatar>
+                    {product.name.charAt(0).toUpperCase()}
+                </Avatar> 
+            }
+            title={product.name}
+            titleTypographyProps={{
+                sx: {fontWeight: 'bold', color: 'black'}
+            }}
+            />
+        <CardMedia
+          sx={{ height: 140, backgroundSize: 'contain'}}
+          image={product.pictureUrl}    
+          title={product.name}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5">
+          {(product.price / 100).toFixed(2)}€
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+           {product.type} / {product.brand}
+          </Typography>
+          
+        </CardContent>
+        <CardActions>
+          <Button size="small">Add to Cart</Button>
+          <Button size="small">View</Button>
+        </CardActions>
+      </Card>
+    )
 }

@@ -1,22 +1,24 @@
 import { useState } from "react";
 import Header from "./Header";
-import { Container, CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import {
+  Container,
+  CssBaseline,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-
-
 function App() {
-
   const [darkMode, setDarkMode] = useState(false);
-  const paletteType = darkMode ? 'dark' : 'light';
+  const paletteType = darkMode ? "dark" : "light";
   const theme = createTheme({
     palette: {
       mode: paletteType,
       background: {
-        default: paletteType === 'light' ? '#eaeaea' : '#121212'
-      }
-    }
+        default: paletteType === "light" ? "#eaeaea" : "#0A0A0A",
+      },
+    },
   });
 
   function handleThemeChange() {
@@ -25,12 +27,12 @@ function App() {
 
   return (
     <>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Header darkMode={darkMode} handleThemeChange={handleThemeChange}/>
-      <Container>
-      <Outlet/>
-      </Container>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Header darkMode={darkMode} handleThemeChange={handleThemeChange} />
+        <Container>
+          <Outlet />
+        </Container>
       </ThemeProvider>
     </>
   );

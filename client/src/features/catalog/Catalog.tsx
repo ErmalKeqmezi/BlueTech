@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Product } from "../../app/models/product";
 import ProductList from "./ProductList";
+import React from "react";
 
 export default function Catalog() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -8,7 +9,6 @@ export default function Catalog() {
     fetch('http://localhost:5000/api/Products')
     .then(response => response.json())
     .then(data => setProducts(data))
-    .catch(error => console.log(error))
   }, [])
 
     return (

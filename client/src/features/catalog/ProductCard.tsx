@@ -1,5 +1,4 @@
 import {
-  Avatar,
   Box,
   Button,
   Card,
@@ -10,7 +9,6 @@ import {
   Typography,
 } from "@mui/material";
 import { Product } from "../../app/models/product";
-import React from "react";
 import { Link } from "react-router-dom";
 
 interface Props {

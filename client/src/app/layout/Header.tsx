@@ -1,4 +1,4 @@
-import { ShoppingBag, ShoppingCart } from "@mui/icons-material";
+import { ShoppingCart } from "@mui/icons-material";
 import {
   AppBar,
   Badge,
@@ -6,13 +6,10 @@ import {
   IconButton,
   List,
   ListItem,
-  Menu,
-  MenuItem,
   Switch,
   Toolbar,
   Typography,
 } from "@mui/material";
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 const navLinks = [
@@ -43,12 +40,7 @@ interface Props {
 }
 
 export default function Header({ darkMode, handleThemeChange }: Props) {
-  function handleClose(
-    event: {},
-    reason: "backdropClick" | "escapeKeyDown"
-  ): void {
-    throw new Error("Function not implemented.");
-  }
+  
 
   return (
     <AppBar position="static" sx={{ mb: 4 }}>
@@ -92,7 +84,4 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
       </Toolbar>
     </AppBar>
   );
-}
-function setAnchorEl(arg0: null) {
-  throw new Error("Function not implemented.");
 }

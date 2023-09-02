@@ -8,6 +8,7 @@ import React from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
+import BasketPage from "../../features/basket/BasketPage";
 
 
 export const router = createBrowserRouter([
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
             { path: 'about', element: <AboutPage /> },
             { path: 'server-error', element: <ServerError /> },
             { path: 'not-found', element: <NotFound /> },
+            { path: 'basket', element: <BasketPage /> },
             { path: '*', element: <Navigate replace to='/not-found' /> },
         ]
     }

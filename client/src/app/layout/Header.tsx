@@ -10,7 +10,8 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useStoreContext } from "../context/StoreContext";
 
 const navLinks = [
   { title: "catalog", path: "/catalog" },
@@ -41,6 +42,8 @@ interface Props {
 
 export default function Header({ darkMode, handleThemeChange }: Props) {
   
+  const {basket} = useStoreContext();
+  const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
 
   return (
     <AppBar position="static" sx={{ mb: 4 }}>
@@ -67,8 +70,8 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
         </List>
 
         <Box display="flex" alignItems="center">
-          <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }}>
-            <Badge badgeContent="2" color="secondary">
+          <IconButton size="large" edge="start" component={Link} to='/basket' color="inherit" sx={{ mr: 2 }}>
+            <Badge badgeContent={itemCount} color="secondary">
               <ShoppingCart />
             </Badge>
           </IconButton>

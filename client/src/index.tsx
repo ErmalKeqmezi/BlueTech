@@ -4,11 +4,10 @@ import './app/layout/styles.css';
 import reportWebVitals from './reportWebVitals';
 import { router } from './app/Router/Routes';
 import { RouterProvider } from 'react-router-dom';
-import { StoreProvider } from './app/context/StoreContext';
-import { configureStore } from './app/store/configureStore';
 import { Provider } from 'react-redux';
+import { store } from './app/store/configureStore';
 
-const store = configureStore();
+
 
 
 const root = ReactDOM.createRoot(
@@ -18,11 +17,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <StoreProvider>
       <Provider store={store}> 
     <RouterProvider router={router} />
     </Provider>
-    </StoreProvider>
   </React.StrictMode>
 );
 

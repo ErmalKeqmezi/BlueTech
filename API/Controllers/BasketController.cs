@@ -45,7 +45,7 @@ namespace API.Controllers
             //get product
             var product = await _context.Products.FindAsync(productId);
             //if we dont have the product with the mentioned id we return not found and exit the method 
-            if (product == null) return NotFound();
+            if (product == null) return BadRequest(new ProblemDetails{Title= "Product Not Found"});
 
             // add product from the method in Basket entity
             basket.AddItem(product, quantity);

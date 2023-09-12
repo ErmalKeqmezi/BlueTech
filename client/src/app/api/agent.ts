@@ -1,7 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
 import { router } from "../Router/Routes";
-import { request } from "http";
 import { PaginatedResponse } from "../models/pagination";
 
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 500));

@@ -48,6 +48,7 @@ export default function ProductCard({ product }: Props) {
               fontWeight: "bold",
               color: "text.primary",
               fontSize: "17px",
+              mt: 2 
             },
           }}
           sx={{ maxHeight: "50px" }}

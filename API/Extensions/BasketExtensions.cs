@@ -1,10 +1,11 @@
 using API.DTO;
 using API.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
-namespace API.Extensions 
+namespace API.Extensions
 {
-    public static class BasketExtensions 
+    public static class BasketExtensions
     {
         public static BasketDto MapBasketToDto(this Basket basket)
         {
@@ -23,6 +24,14 @@ namespace API.Extensions
                     Quantity = item.Quantity
                 }).ToList()
             };
+        }
+
+        public static IQueryable<Basket> RetrieveBasketWithItems(this IQueryable<Basket> query, string buyerID)
+        {
+            return query
+            .Include(i => i.Items)
+            .ThenInclude(p => p.Product)
+            .Where(b => b.BuyerId == buyerID);
         }
     }
 }

@@ -15,8 +15,17 @@ namespace API.Data
                     UserName = "Ermal",
                     Email = "ermal@bluetech.com"
                 };
-                await userManager.CreateAsync(user, "Pa$$w04d");
+                await userManager.CreateAsync(user, "Pa$$w0rd");
                 await userManager.AddToRoleAsync(user, "Member");
+
+                 var user2 = new User 
+                {
+                    UserName = "Artin",
+                    Email = "artin@bluetech.com"
+                };
+                await userManager.CreateAsync(user2, "Pa$$w0rd");
+                await userManager.AddToRoleAsync(user2, "Member");
+
 
                 var admin = new User 
                 {

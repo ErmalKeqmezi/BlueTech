@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 namespace API.Entities.OrderAggregate
 {
     [Owned]
+
+    //this class is used to see a snapshot of the product when it was ordered
     public class ProductItemOrdered
     {
         public int ProductId { get; set; }

@@ -101,10 +101,13 @@ namespace API.Controllers
             //Check if the user wanted to save his address
             if(orderDto.SaveAddress)
             {
+
                 //Get the user 
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+                var user = await _context.Users
+                .Include(a => a.Address)
+                .FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
                 //Map the address
-                user.Address = new UserAddress 
+                var address = new UserAddress 
                 {
                     FullName = orderDto.ShippingAddress.FullName,
                     Address1 = orderDto.ShippingAddress.Address1,
@@ -113,7 +116,7 @@ namespace API.Controllers
                     Country = orderDto.ShippingAddress.Country,
                     Zip = orderDto.ShippingAddress.Zip,
                 };
-                _context.Update(user);
+                user.Address = address;
             }
             //Save changes to database
             var result = await _context.SaveChangesAsync() > 0;

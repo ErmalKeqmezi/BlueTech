@@ -108,9 +108,7 @@ export default function CheckoutPage() {
                 Thank you for your order.
               </Typography>
               <Typography variant="subtitle1">
-                Your order number is #{orderNumber}. We have not emailed your
-                order confirmation, and will not send you an update when your
-                order has shipped as this is not a store yet!
+                Your order number is #{orderNumber}. Thank you for your purchase!
               </Typography>
             </>
           ) : (

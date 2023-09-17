@@ -9,10 +9,12 @@ import {
   Switch,
   Toolbar,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { Link, NavLink } from "react-router-dom";
 import { useAppSelector } from "../store/configureStore";
 import SignedInMenu from "./SignedInMenu";
+import NavResponsive from "./NavResponsive";
 
 const navLinks = [
   { title: "catalog", path: "/catalog" },
@@ -23,6 +25,15 @@ const navLinks = [
 const loginLinks = [
   { title: "register", path: "/register" },
   { title: "login", path: "/login" },
+];
+
+const allLinks = [
+  { title: "Catalog", path: "/catalog" },
+  { title: "About", path: "/about" },
+  { title: "Contact", path: "/contact" },
+  { title: "Basket", path: "/basket" },
+  { title: "Register", path: "/register" },
+  { title: "Login", path: "/login" },
 ];
 
 const style = {
@@ -42,10 +53,10 @@ interface Props {
 }
 
 export default function Header({ darkMode, handleThemeChange }: Props) {
-  
-  const {basket} = useAppSelector(state => state.basket);
-  const {user} = useAppSelector(state => state.account);
+  const { basket } = useAppSelector((state) => state.basket);
+  const { user } = useAppSelector((state) => state.account);
   const itemCount = basket?.items.reduce((sum, item) => sum + item.quantity, 0);
+  const isMobile = useMediaQuery("(max-width:767px)");
 
   return (
     <AppBar position="static" sx={{ mb: 4 }}>
@@ -62,33 +73,44 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
           </Typography>
           <Switch checked={darkMode} onChange={handleThemeChange} />
         </Box>
-
-        <List sx={{ display: "flex" }}>
-          {navLinks.map(({ title, path }) => (
-            <ListItem component={NavLink} to={path} key={path} sx={style}>
-              {title.toUpperCase()}
-            </ListItem>
-          ))}
-        </List>
-
-        <Box display="flex" alignItems="center">
-          <IconButton size="large" edge="start" component={Link} to='/basket' color="inherit" sx={{ mr: 2 }}>
-            <Badge badgeContent={itemCount} className="shoppingCart">
-              <ShoppingCart />
-            </Badge>
-          </IconButton>
+        {isMobile ? null : (
+          <List sx={{ display: "flex" }}>
+            {navLinks.map(({ title, path }) => (
+              <ListItem component={NavLink} to={path} key={path} sx={style}>
+                {title.toUpperCase()}
+              </ListItem>
+            ))}
+          </List>
+        )}
+        {isMobile ? (
+          <NavResponsive navLinks={allLinks} />
+        ) : (
+          <Box display="flex" alignItems="center">
+            <IconButton
+              size="large"
+              edge="start"
+              component={Link}
+              to="/basket"
+              color="inherit"
+              sx={{ mr: 2 }}
+            >
+              <Badge badgeContent={itemCount} className="shoppingCart">
+                <ShoppingCart />
+              </Badge>
+            </IconButton>
             {user ? (
-              <SignedInMenu /> 
+              <SignedInMenu />
             ) : (
               <List sx={{ display: "flex" }}>
-              {loginLinks.map(({ title, path }) => (
-                <ListItem component={NavLink} to={path} key={path} sx={style}>
-                  {title.toUpperCase()}
-                </ListItem>
-              ))}
-            </List>
+                {loginLinks.map(({ title, path }) => (
+                  <ListItem component={NavLink} to={path} key={path} sx={style}>
+                    {title.toUpperCase()}
+                  </ListItem>
+                ))}
+              </List>
             )}
-        </Box>
+          </Box>
+        )}
       </Toolbar>
     </AppBar>
   );

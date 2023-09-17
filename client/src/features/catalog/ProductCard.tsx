@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardMedia,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { Product } from "../../app/models/product";
 import { Link } from "react-router-dom";
@@ -19,12 +20,9 @@ interface Props {
 }
 
 export default function ProductCard({ product }: Props) {
-
-    const {status} = useAppSelector(state => state.basket);
-    const dispatch = useAppDispatch();
-
-
- 
+  const { status } = useAppSelector((state) => state.basket);
+  const dispatch = useAppDispatch();
+  const isMobile = useMediaQuery("(max-width:767px)");
 
   return (
     <Card
@@ -34,6 +32,7 @@ export default function ProductCard({ product }: Props) {
           transition: "transform .2s",
           transform: "scale(1.02)",
         },
+        margin: isMobile ? "-8px" : "0px",
       }}
     >
       <Box
@@ -47,8 +46,8 @@ export default function ProductCard({ product }: Props) {
             sx: {
               fontWeight: "bold",
               color: "text.primary",
-              fontSize: "17px",
-              mt: 2 
+              fontSize: isMobile ? "14px" : "17px",
+              mt: 2,
             },
           }}
           sx={{ maxHeight: "50px" }}
@@ -79,8 +78,10 @@ export default function ProductCard({ product }: Props) {
               backgroundColor: "primary.dark",
             },
           }}
-          loading={status.includes('pendingAddItem' + product.id)}
-          onClick={() => dispatch(addBasketItemAsync({productId: product.id, quantity: 1}))}
+          loading={status.includes("pendingAddItem" + product.id)}
+          onClick={() =>
+            dispatch(addBasketItemAsync({ productId: product.id, quantity: 1 }))
+          }
         >
           Add to Cart
         </LoadingButton>

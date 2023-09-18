@@ -73,7 +73,9 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
           </Typography>
           <Switch checked={darkMode} onChange={handleThemeChange} />
         </Box>
-        {isMobile ? null : (
+        {isMobile ? (
+          <SignedInMenu />
+        ) : (
           <List sx={{ display: "flex" }}>
             {navLinks.map(({ title, path }) => (
               <ListItem component={NavLink} to={path} key={path} sx={style}>

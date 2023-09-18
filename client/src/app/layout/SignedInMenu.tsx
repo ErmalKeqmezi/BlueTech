@@ -1,4 +1,11 @@
-import { Button, Fab, Fade, Menu, MenuItem } from "@mui/material";
+import {
+  Button,
+  Fab,
+  Fade,
+  Menu,
+  MenuItem,
+  useMediaQuery,
+} from "@mui/material";
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../store/configureStore";
 import { signOut } from "../../features/account/accountSlice";
@@ -17,10 +24,15 @@ export default function SignInMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const isMobile = useMediaQuery("(max-width:767px)");
 
   return (
     <>
-      <Button color={"inherit"} onClick={handleClick} sx={{ typography: "h6" }}>
+      <Button
+        color={"inherit"}
+        onClick={handleClick}
+        sx={{ fontSize: isMobile ? "10px" : "16px" }}
+      >
         {user?.email}
       </Button>
       <Menu

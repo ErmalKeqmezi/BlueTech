@@ -42,6 +42,7 @@ export default function NavResponsive({ navLinks }: NavResponsiveProps) {
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
+      sx={{ backgroundColor: "primary.main", color: "white" }}
     >
       <List>
         {navLinks.map(({ title, path }) => (
@@ -67,6 +68,11 @@ export default function NavResponsive({ navLinks }: NavResponsiveProps) {
             open={state[anchor]}
             onClose={toggleDrawer(anchor, false)}
             onOpen={toggleDrawer(anchor, true)}
+            PaperProps={{
+              sx: {
+                bgcolor: "primary.main",
+              },
+            }}
           >
             {list(anchor)}
           </SwipeableDrawer>

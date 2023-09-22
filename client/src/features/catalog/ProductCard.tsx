@@ -64,7 +64,7 @@ export default function ProductCard({ product }: Props) {
           <Typography
             variant="body2"
             color="text.secondary"
-            sx={{ fontSize: isMobile ? "12px" : "14px" }}
+            sx={{ fontSize: isMobile ? "11px" : "14px" }}
           >
             {product.type} / {product.brand}
           </Typography>

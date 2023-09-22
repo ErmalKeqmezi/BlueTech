@@ -8,6 +8,7 @@ import {
   TableRow,
   TextField,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -20,6 +21,7 @@ import {
   removeBasketItemAsync,
 } from "../basket/basketSlice";
 import { fetchProductAsync, productSelectors } from "./catalogSlice";
+import { grid } from "@mui/system";
 
 export default function ProductDetails() {
   const { basket, status } = useAppSelector((state) => state.basket);
@@ -30,7 +32,8 @@ export default function ProductDetails() {
   );
   const { status: productStatus } = useAppSelector((state) => state.catalog);
   const [quantity, setQuantity] = useState(0);
-  const item = basket?.items.find(i => i.productId === product?.id);
+  const item = basket?.items.find((i) => i.productId === product?.id);
+  const isMobile = useMediaQuery("(max-width:767px)");
 
   useEffect(() => {
     if (item) setQuantity(item.quantity);
@@ -70,11 +73,15 @@ export default function ProductDetails() {
 
   return (
     <Grid
-      container
       spacing={6}
       justifyContent="center"
       alignItems="center"
-      style={{ minHeight: "80vh" }}
+      container={isMobile ? false : true}
+      style={{
+        minHeight: "80vh",
+        flexDirection: isMobile ? "column" : "row",
+        padding: 0,
+      }}
     >
       <Grid item xs={6}>
         <img
@@ -83,7 +90,7 @@ export default function ProductDetails() {
           style={{ width: "100%", transform: "scale(1.5)" }}
         />
       </Grid>
-      <Grid item xs={6}>
+      <Grid item xs={6} sx={{ mt: "50px" }}>
         <Typography variant="h3">{product.name}</Typography>
         <Divider sx={{ mb: 2 }} />
         <Typography variant="h4">

@@ -59,7 +59,7 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
   const isMobile = useMediaQuery("(max-width:767px)");
 
   return (
-    <AppBar position="static" sx={{ mb: 4 }}>
+    <AppBar position="static">
       <Toolbar
         sx={{
           display: "flex",

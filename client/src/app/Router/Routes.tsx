@@ -1,10 +1,8 @@
 import App from "../layout/App";
-import HomePage from "../../features/home/HomePage";
 import ContactPage from "../../features/contact/ContactPage";
 import ProductDetails from "../../features/catalog/ProductDetails";
 import AboutPage from "../../features/about/AboutPage";
 import Catalog from "../../features/catalog/Catalog";
-import React from "react";
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
@@ -12,7 +10,6 @@ import BasketPage from "../../features/basket/BasketPage";
 import Register from "../../features/account/Register";
 import Login from "../../features/account/Login";
 import RequireAuth from "./RequireAuth";
-import CheckoutPage from "../../features/checkout/CheckoutPage";
 import Orders from "../../features/orders/Orders";
 import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
 
@@ -28,7 +25,6 @@ export const router = createBrowserRouter([
           { path: "orders", element: <Orders /> },
         ],
       },
-      { path: "", element: <HomePage /> },
       { path: "catalog", element: <Catalog /> },
       { path: "catalog/:id", element: <ProductDetails /> },
       { path: "contact", element: <ContactPage /> },

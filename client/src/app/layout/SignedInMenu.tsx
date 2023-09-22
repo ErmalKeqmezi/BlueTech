@@ -1,6 +1,5 @@
 import {
   Button,
-  Fab,
   Fade,
   Menu,
   MenuItem,

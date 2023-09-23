@@ -20,8 +20,11 @@ const sortOptions = [
   { value: "priceDesc", label: "Price - High to low" },
   { value: "price", label: "Price - Low to high" },
 ];
+interface Props {
+  isHome?: boolean;
+}
 
-export default function Catalog() {
+export default function Catalog({ isHome = true }: Props) {
   const products = useAppSelector(productSelectors.selectAll);
   const {
     productsLoaded,
@@ -49,22 +52,23 @@ export default function Catalog() {
     <Grid container spacing={4}>
       {isMobile ? null : (
         <>
-          <Grid item xs={3}>
-            <Paper sx={{ mb: 2 }}>
-              <ProductSearch />
-            </Paper>
+          {isHome && (
+            <Grid item xs={3}>
+              <Paper sx={{ mb: 2 }}>
+                <ProductSearch />
+              </Paper>
 
-            <Paper sx={{ mb: 2, p: 2 }}>
-              <RadioButtonGroup
-                selectedValue={productParams.orderBy}
-                options={sortOptions}
-                onChange={(e) =>
-                  dispatch(setProductParams({ orderBy: e.target.value }))
-                }
-              />
-            </Paper>
+              <Paper sx={{ mb: 2, p: 2 }}>
+                <RadioButtonGroup
+                  selectedValue={productParams.orderBy}
+                  options={sortOptions}
+                  onChange={(e) =>
+                    dispatch(setProductParams({ orderBy: e.target.value }))
+                  }
+                />
+              </Paper>
 
-            {/* <Paper sx={{ mb: 2, p: 2 }}>
+              {/* <Paper sx={{ mb: 2, p: 2 }}>
            <CheckboxButtons
           items={brands}
           checked={productParams.brands}
@@ -72,16 +76,17 @@ export default function Catalog() {
           />
         </Paper> */}
 
-            <Paper sx={{ mb: 2, p: 2 }}>
-              <CheckboxButtons
-                items={types}
-                checked={productParams.types}
-                onChange={(items: string[]) =>
-                  dispatch(setProductParams({ types: items }))
-                }
-              />
-            </Paper>
-          </Grid>
+              <Paper sx={{ mb: 2, p: 2 }}>
+                <CheckboxButtons
+                  items={types}
+                  checked={productParams.types}
+                  onChange={(items: string[]) =>
+                    dispatch(setProductParams({ types: items }))
+                  }
+                />
+              </Paper>
+            </Grid>
+          )}
         </>
       )}
 

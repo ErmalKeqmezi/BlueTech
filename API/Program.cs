@@ -2,6 +2,7 @@ using System.Text;
 using API.Data;
 using API.Entities;
 using API.Middleware;
+using API.RequestHelpers;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -41,6 +42,8 @@ builder.Services.AddSwaggerGen(config =>
         }
     });
 });
+
+builder.Services.AddAutoMapper(typeof(MappingProfiles).Assembly);
 
 
 

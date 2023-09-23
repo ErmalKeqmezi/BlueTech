@@ -35,7 +35,7 @@ export default function Footer() {
               123 Main Street, Prishtina, Kosova
             </Typography>
             <Typography variant="body2" color="white">
-              Email: info@example.com
+              Email: contact@bluetech.com
             </Typography>
             <Typography variant="body2" color="white">
               Phone: +383 44 567 890

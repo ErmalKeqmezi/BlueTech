@@ -82,6 +82,16 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
                 {title.toUpperCase()}
               </ListItem>
             ))}
+
+            {user && 
+            <ListItem
+            component={NavLink}
+            to={'/dashboard'}
+            sx={style}
+            >
+              DASHBOARD
+            </ListItem>
+            }
           </List>
         )}
         {isMobile ? (

@@ -53,6 +53,7 @@ builder.Services.AddDbContext<StoreContext>(opt =>
 });
 builder.Services.AddCors();
 
+
 builder.Services.AddIdentityCore<User>(opt => 
 {
     opt.User.RequireUniqueEmail = true;
@@ -76,6 +77,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddScoped<PaymentService>();
+builder.Services.AddScoped<ImageService>();
 
 
 var app = builder.Build();

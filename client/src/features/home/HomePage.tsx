@@ -5,12 +5,14 @@ import Catalog from "../catalog/Catalog";
 
 export default function HomePage() {
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     slideToShow: 1,
     slideToScroll: 1,
   };
+
+  
 
   return (
     <>

@@ -12,8 +12,9 @@ import Login from "../../features/account/Login";
 import RequireAuth from "./RequireAuth";
 import Orders from "../../features/orders/Orders";
 import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
-import Dashboard from "../../features/admin/ProductCrud";
+
 import ProductCrud from "../../features/admin/ProductCrud";
+import Dashboard from "../../features/admin/Dashboard/Dashboard";
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,7 @@ export const router = createBrowserRouter([
           { path: "checkout", element: <CheckoutWrapper /> },
           { path: "orders", element: <Orders /> },
           { path: "productcrud", element: <ProductCrud /> },
+          { path: "dashboard", element: <Dashboard /> },
         ],
       },
       { path: "catalog", element: <Catalog /> },

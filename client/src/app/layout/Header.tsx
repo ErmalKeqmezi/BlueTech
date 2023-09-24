@@ -84,7 +84,7 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
             ))}
 
             {user && (
-              <ListItem component={NavLink} to={"/productcrud"} sx={style}>
+              <ListItem component={NavLink} to={"/dashboard"} sx={style}>
                 DASHBOARD
               </ListItem>
             )}

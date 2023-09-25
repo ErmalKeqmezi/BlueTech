@@ -26,10 +26,12 @@ export const router = createBrowserRouter([
         children: [
           { path: "checkout", element: <CheckoutWrapper /> },
           { path: "orders", element: <Orders /> },
+        ]},
+        {element: <RequireAuth roles={['Admin']}/>,
+        children: [
           { path: "productcrud", element: <ProductCrud /> },
           { path: "dashboard", element: <Dashboard /> },
-        ],
-      },
+        ]},
       { path: "catalog", element: <Catalog /> },
       { path: "catalog/:id", element: <ProductDetails /> },
       { path: "contact", element: <ContactPage /> },

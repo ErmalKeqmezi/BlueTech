@@ -25,7 +25,8 @@ export default function AppDropzone(props: Props) {
     }
 
     const onDrop = useCallback((acceptedFiles: any) => {
-        acceptedFiles[0] = Object.assign(acceptedFiles[0], { preview: URL.createObjectURL(acceptedFiles[0]) });
+        acceptedFiles[0] = Object.assign(acceptedFiles[0], 
+            {preview: URL.createObjectURL(acceptedFiles[0])});
         field.onChange(acceptedFiles[0]);
     }, [field])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })

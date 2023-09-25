@@ -67,13 +67,13 @@ namespace API.Controllers
         {
             var product = _mapper.Map<Product>(productDto);
 
-            if (productDto.PictureUrl != null)
+            if (productDto.File != null)
             {
-                var imageResult = await _imageService.AddImageAsync(productDto.PictureUrl);
+                var imageResult = await _imageService.AddImageAsync(productDto.File);
 
                 if (imageResult.Error != null) return BadRequest(new ProblemDetails { Title = imageResult.Error.Message });
 
-                product.PictureUrl = imageResult.SecureUrl.ToString();
+                product.PictureUrl = imageResult.Url.ToString();
                 product.PublicId = imageResult.PublicId;
             }
 
@@ -115,15 +115,15 @@ namespace API.Controllers
 
             _mapper.Map(productDto, product);
 
-            if (productDto.PictureUrl != null)
+            if (productDto.File != null)
             {
-                var imageResult = await _imageService.AddImageAsync(productDto.PictureUrl);
+                var imageResult = await _imageService.AddImageAsync(productDto.File);
 
                 if (imageResult.Error != null) return BadRequest(new ProblemDetails { Title = imageResult.Error.Message });
 
                 if(!string.IsNullOrEmpty(product.PublicId)) await _imageService.DeleteImageAsync(product.PublicId);
 
-                product.PictureUrl = imageResult.SecureUrl.ToString();
+                product.PictureUrl = imageResult.Url.ToString();
                 product.PublicId = imageResult.PublicId;
             }
 

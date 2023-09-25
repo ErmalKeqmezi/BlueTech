@@ -83,7 +83,8 @@ export default function Dashboard() {
                 <Box sx={{pt: 2}}>
                     <AppPagination 
                         metaData={metaData} 
-                        onPageChange={(page: number) => dispatch(setPageNumber({pageNumber: page}))} />
+                        onPageChange={(page: number) => dispatch(setPageNumber({pageNumber: page}))} 
+                    />
                 </Box>
             }
         </>

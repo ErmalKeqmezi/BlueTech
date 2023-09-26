@@ -92,7 +92,7 @@ const Admin = {
 }
 
 const Catalog = {
-  list: (params: URLSearchParams) => requests.get("products", params),
+  list: (params: URLSearchParams) => requests.get("products/GetAllProducts", params),
   details: (id: number) => requests.get(`products/${id}`),
   fetchFilters: () => requests.get("products/filters"),
 };

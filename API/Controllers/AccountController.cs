@@ -36,9 +36,9 @@ namespace API.Controllers
             var userBasket = await RetrieveBasket(loginDto.Username);
             var anonBasket = await RetrieveBasket(Request.Cookies["buyerId"]);
 
-            if(anonBasket != null)
+            if (anonBasket != null)
             {
-                if(userBasket != null) _context.Baskets.Remove(userBasket);
+                if (userBasket != null) _context.Baskets.Remove(userBasket);
                 anonBasket.BuyerId = user.UserName;
                 Response.Cookies.Delete("buyerId");
                 await _context.SaveChangesAsync();
@@ -116,6 +116,91 @@ namespace API.Controllers
                 .FirstOrDefaultAsync(x => x.BuyerId == Request.Cookies["buyerId"]);
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpPost("createuser")]
+        public async Task<ActionResult> CreateUser(CreateUserDto createUserDto)
+        {
+            var user = new User
+            {
+                UserName = createUserDto.Username,
+                Email = createUserDto.Email
+            };
+
+            var result = await _userManager.CreateAsync(user, createUserDto.Password);
+
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(error.Code, error.Description);
+                }
+                return ValidationProblem();
+            }
+
+            await _userManager.AddToRoleAsync(user, "Member");
+
+            return StatusCode(201);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("getusers")]
+        public async Task<ActionResult<List<ReturnUserDto>>> GetUsers()
+        {
+            var users = await _context.Users
+            .Select(user => new ReturnUserDto
+            {
+                Id = user.Id,
+                Username = user.UserName,
+                NormalizedUserName = user.NormalizedUserName,
+                Email = user.Email,
+                NormalizedEmail = user.NormalizedEmail
+            })
+            .ToListAsync();
+
+            return users;
+        }
+        
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteUser(int id)
+        {
+            var user = await _context.Users.FindAsync(id);
+
+            if (user == null) return NotFound();
+
+            _context.Users.Remove(user);
+
+            var result = await _context.SaveChangesAsync() > 0;
+
+            if (result) return Ok();
+
+            return BadRequest(new ProblemDetails { Title = "Problem deleting the user" });
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut]
+        public async Task<ActionResult<User>> UpdateUser(UpdateUserDto updateUserDto) 
+        {
+            var user = await _userManager.FindByIdAsync(updateUserDto.Id.ToString());
+
+            if (user == null) return NotFound();
+
+            user.UserName = updateUserDto.UserName;
+            user.NormalizedUserName = updateUserDto.UserName.ToUpper();
+            user.Email = updateUserDto.Email;
+            user.NormalizedEmail = updateUserDto.Email.ToUpper();
+            
+
+            var result = await _userManager.UpdateAsync(user);
+
+            if(result.Succeeded) 
+            {
+                return Ok(user);
+            }
+
+            return BadRequest(new ProblemDetails{Title = "Problem with updating the user"});
+        }
 
     }
 }

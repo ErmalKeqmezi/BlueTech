@@ -4,6 +4,7 @@ import { router } from "../Router/Routes";
 import { PaginatedResponse } from "../models/pagination";
 import { store } from "../store/configureStore";
 import { create } from "domain";
+import { User } from "../models/user";
 
 const sleep = () => new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -88,7 +89,11 @@ function createFormData(item: any) {
 const Admin = {
   createProduct: (product: any) => requests.postForm('products', createFormData(product)),
   updateProduct: (product: any) => requests.putForm('products', createFormData(product)),
-  deleteProduct: (id: number) => requests.delete(`products/${id}`)
+  deleteProduct: (id: number) => requests.delete(`products/${id}`),
+  createUser: (user: any) => requests.post('account/createuser', user),
+  deleteUser: (id: number) => requests.delete(`account/${id}`),
+  updateUser: (user: any) => requests.put('account', user),
+  getUsers: () => requests.get('account/getusers')
 }
 
 const Catalog = {

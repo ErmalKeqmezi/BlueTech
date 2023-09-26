@@ -19,7 +19,6 @@ import NavResponsive from "./NavResponsive";
 const navLinks = [
   { title: "catalog", path: "/catalog" },
   { title: "about", path: "/about" },
-  { title: "contact", path: "/contact" },
 ];
 
 const loginLinks = [

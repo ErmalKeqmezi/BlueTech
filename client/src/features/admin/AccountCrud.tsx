@@ -11,12 +11,54 @@ import {
     Box,
   } from "@mui/material";
   import { Edit, Delete } from "@mui/icons-material";
-  import { currencyFormat } from "../../app/util/util";
   import { LoadingButton } from "@mui/lab";
+import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
+import { useEffect, useState } from "react";
+import agent from "../../app/api/agent";
+import LoadingComponent from "../../app/layout/LoadingComponent";
+import AccountForm from "./AccountForm";
+
+export interface Users {
+  id: number;
+  username: string;
+  normalizedUserName: string;
+  email: string;
+  normalizedEmail: string;
+}
   
   export default function AccountCrud() {
+    const [users, setUsers] = useState<Users []>([]);
+    const [Loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [selectedUser, setSelectedUser] = useState<Users | undefined>(undefined);
+    const [editMode, setEditMode] = useState(false);
 
+
+    function handleSelectedUser(user: Users) {
+      setSelectedUser(user);
+      setEditMode(true);
+    }
+
+    useEffect(() => {
+          agent.Admin.getUsers()
+          .then(users => setUsers(users))
+          .catch(error => console.log(error))
+          .finally(() => setLoading(false));
+    }, []); 
+
+    function cancelEdit() {
+      if (selectedUser) setSelectedUser(undefined);
+      setEditMode(false);
+    }
+
+    if (editMode)
+    return <AccountForm user={selectedUser} cancelEdit={cancelEdit} />;
+  
     
+    if (Loading) {
+      return <LoadingComponent message="Loading Users" /> 
+    }
+
     return (
       <>
         <Box display="flex" justifyContent="space-between">
@@ -27,7 +69,7 @@ import {
             sx={{ m: 2 }}
             size="large"
             variant="contained"
-          
+            onClick={() => setEditMode(true)}
           >
             Create
           </Button>
@@ -36,53 +78,42 @@ import {
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>#</TableCell>
-                <TableCell align="left">Product</TableCell>
-                <TableCell align="right">Price</TableCell>
-                <TableCell align="center">Type</TableCell>
-                <TableCell align="center">Brand</TableCell>
-                <TableCell align="center">Quantity</TableCell>
+                <TableCell align="left">Id</TableCell>
+                <TableCell align="right">Username</TableCell>
+                <TableCell align="center">NormalizedUsername</TableCell>
+                <TableCell align="center">Email</TableCell>
+                <TableCell align="center">NormalizedEmail</TableCell>
                 <TableCell align="right"></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {products.map((product) => (
+              {users.map((user: any) => (
                 <TableRow
-                  key={product.id}
                   sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
                 >
-                  <TableCell component="th" scope="row">
-                    {product.id}
-                  </TableCell>
                   <TableCell align="left">
                     <Box display="flex" alignItems="center">
-                      <img
-                        src={product.pictureUrl}
-                        alt={product.name}
-                        style={{ height: 50, marginRight: 20 }}
-                      />
-                      <span>{product.name}</span>
+                      <span>{user.id}</span>
                     </Box>
                   </TableCell>
-                  <TableCell align="right">
-                    {currencyFormat(product.price)}
+                  <TableCell align="center">
+                   {user.username}
                   </TableCell>
-                  <TableCell align="center">{product.type}</TableCell>
-                  <TableCell align="center">{product.brand}</TableCell>
-                  <TableCell align="center">{product.quantityInStock}</TableCell>
+                  <TableCell align="center">{user.normalizedUserName}</TableCell>
+                  <TableCell align="center">{user.email}</TableCell>
+                  <TableCell align="center">{user.normalizedEmail}</TableCell>
                   <TableCell align="right">
                     <Button
-
+                      onClick={() => handleSelectedUser(user)}
                       startIcon={<Edit />}
                     />
                     <LoadingButton 
-                    
                     startIcon={<Delete />} color="error" 
                     
                     />
                   </TableCell>
                 </TableRow>
-              ))}
+               ))} 
             </TableBody>
           </Table>
         </TableContainer>

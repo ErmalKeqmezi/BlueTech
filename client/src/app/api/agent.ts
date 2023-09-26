@@ -75,7 +75,7 @@ const requests = {
   }).then(responseBody),
   putForm: (url: string, data: FormData) => axios.put(url, data, {
     headers: {'Content-type': 'multipart/form-data'}
-  }).then(responseBody)
+  }).then(responseBody),
 };
 
 function createFormData(item: any) {

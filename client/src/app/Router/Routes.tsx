@@ -15,6 +15,7 @@ import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
 
 import ProductCrud from "../../features/admin/ProductCrud";
 import Dashboard from "../../features/admin/Dashboard/Dashboard";
+import AccountCrud from "../../features/admin/AccountCrud";
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ export const router = createBrowserRouter([
         children: [
           { path: "productcrud", element: <ProductCrud /> },
           { path: "dashboard", element: <Dashboard /> },
+          { path: "accountcrud", element: <AccountCrud /> },
         ]},
       { path: "catalog", element: <Catalog /> },
       { path: "catalog/:id", element: <ProductDetails /> },

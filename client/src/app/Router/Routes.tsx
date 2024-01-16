@@ -12,10 +12,13 @@ import Login from "../../features/account/Login";
 import RequireAuth from "./RequireAuth";
 import Orders from "../../features/orders/Orders";
 import CheckoutWrapper from "../../features/checkout/CheckoutWrapper";
-
+import Dashboard from "../../features/admin/ProductCrud";
 import ProductCrud from "../../features/admin/ProductCrud";
+<<<<<<< HEAD
 import Dashboard from "../../features/admin/Dashboard/Dashboard";
 import AccountCrud from "../../features/admin/AccountCrud";
+=======
+>>>>>>> parent of b85cff6 (Dashboard)
 
 export const router = createBrowserRouter([
   {
@@ -31,9 +34,14 @@ export const router = createBrowserRouter([
         {element: <RequireAuth roles={['Admin']}/>,
         children: [
           { path: "productcrud", element: <ProductCrud /> },
+<<<<<<< HEAD
           { path: "dashboard", element: <Dashboard /> },
           { path: "accountcrud", element: <AccountCrud /> },
         ]},
+=======
+        ],
+      },
+>>>>>>> parent of b85cff6 (Dashboard)
       { path: "catalog", element: <Catalog /> },
       { path: "catalog/:id", element: <ProductDetails /> },
       { path: "contact", element: <ContactPage /> },

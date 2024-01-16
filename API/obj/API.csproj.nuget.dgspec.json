@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\artin\\Desktop\\DizajnimiiWEB\\API\\API.csproj": {}
+    "C:\\Users\\artin\\Desktop\\BlueTech-1\\api\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\artin\\Desktop\\DizajnimiiWEB\\API\\API.csproj": {
+    "C:\\Users\\artin\\Desktop\\BlueTech-1\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\artin\\Desktop\\DizajnimiiWEB\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\artin\\Desktop\\BlueTech-1\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\artin\\Desktop\\DizajnimiiWEB\\API\\API.csproj",
+        "projectPath": "C:\\Users\\artin\\Desktop\\BlueTech-1\\api\\API.csproj",
         "packagesPath": "C:\\Users\\artin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\artin\\Desktop\\DizajnimiiWEB\\API\\obj\\",
+        "outputPath": "C:\\Users\\artin\\Desktop\\BlueTech-1\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\artin\\AppData\\Roaming\\NuGet\\NuGet.Config",

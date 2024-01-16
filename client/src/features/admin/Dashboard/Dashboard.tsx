@@ -17,7 +17,6 @@ import PeopleIcon from "@mui/icons-material/People";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import Graph from "./Graph";
 import ProductCrud from "../ProductCrud";
-import AccountCrud from "../AccountCrud";
 
 const drawerWidth = 240;
 
@@ -58,8 +57,11 @@ export default function Dashboard() {
   };
 
   const buttonListItems = [
+    { label: "Dashboard", icon: <DashboardIcon /> },
     { label: "Product CRUD", icon: <ShoppingCartIcon /> },
     { label: "Account CRUD", icon: <PeopleIcon /> },
+    { label: "Graph", icon: <AssignmentIcon /> },
+    // Add more button labels and icons here
   ];
 
   const handleItemClick = (item: string) => {
@@ -105,7 +107,7 @@ export default function Dashboard() {
             <Graph />
           ) : selectedButton === "Product CRUD" ? (
             <ProductCrud />
-          ) : selectedButton === "Account CRUD" ? <AccountCrud /> : selectedButton ===
+          ) : selectedButton === "Account CRUD" ? null : selectedButton ===
             "Graph" ? null : (
             <Graph />
           )}

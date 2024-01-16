@@ -5822,11 +5822,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\artin\\Desktop\\DizajnimiiWEB\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\artin\\Desktop\\BlueTech-1\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\artin\\Desktop\\DizajnimiiWEB\\API\\API.csproj",
+      "projectPath": "C:\\Users\\artin\\Desktop\\BlueTech-1\\API\\API.csproj",
       "packagesPath": "C:\\Users\\artin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\artin\\Desktop\\DizajnimiiWEB\\API\\obj\\",
+      "outputPath": "C:\\Users\\artin\\Desktop\\BlueTech-1\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\artin\\AppData\\Roaming\\NuGet\\NuGet.Config",

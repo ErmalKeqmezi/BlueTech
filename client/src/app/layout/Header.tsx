@@ -89,6 +89,7 @@ export default function Header({ darkMode, handleThemeChange }: Props) {
             )}
           </List>
         )}
+
         {isMobile ? (
           <NavResponsive navLinks={allLinks} />
         ) : (

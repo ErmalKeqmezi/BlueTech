@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "niQV5tesCitpMz2jtQ9w+IJ8Q6sB2322jtGfzoMyTdnsSUzWBcOq3g8KbKAKlfGVteapWDOOiimsQwVIlUtHNw==",
+  "dgSpecHash": "cGihIDTeky9hsNmNHBDhvIwgqe+gAutsrsu6+5NJcQXG6HggvcxhXunUU8MPFiqWWh85ZVRruuLWcnwDY87QJA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\artin\\Desktop\\BlueTech-1\\api\\API.csproj",
+  "projectFilePath": "C:\\Users\\artin\\Documents\\BlueTech\\api\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artin\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\artin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

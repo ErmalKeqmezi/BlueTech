@@ -1,17 +1,18 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import Button from "@mui/material/Button";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MenuIcon from "@mui/icons-material/Menu";
-import { NavLink } from "react-router-dom";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import Button from '@mui/material/Button';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
+import { NavLink } from 'react-router-dom';
+import { useAppSelector } from '../store/configureStore';
 
-type Anchor = "right";
+type Anchor = 'right';
 
 interface NavResponsiveProps {
   navLinks: { title: string; path: string }[];
@@ -21,15 +22,16 @@ export default function NavResponsive({ navLinks }: NavResponsiveProps) {
   const [state, setState] = React.useState({
     right: false,
   });
+  const { user } = useAppSelector((state) => state.account);
 
   const toggleDrawer =
     (anchor: Anchor, open: boolean) =>
     (event: React.KeyboardEvent | React.MouseEvent) => {
       if (
         event &&
-        event.type === "keydown" &&
-        ((event as React.KeyboardEvent).key === "Tab" ||
-          (event as React.KeyboardEvent).key === "Shift")
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
       ) {
         return;
       }
@@ -39,10 +41,10 @@ export default function NavResponsive({ navLinks }: NavResponsiveProps) {
 
   const list = (anchor: Anchor) => (
     <Box
-      role="presentation"
+      role='presentation'
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
-      sx={{ backgroundColor: "primary.main", color: "white" }}
+      sx={{ backgroundColor: 'primary.main', color: 'white' }}
     >
       <List>
         {navLinks.map(({ title, path }) => (
@@ -58,10 +60,10 @@ export default function NavResponsive({ navLinks }: NavResponsiveProps) {
 
   return (
     <div>
-      {(["right"] as const).map((anchor) => (
+      {(['right'] as const).map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>
-            <MenuIcon sx={{ color: "white" }} />
+            <MenuIcon sx={{ color: 'white' }} />
           </Button>
           <SwipeableDrawer
             anchor={anchor}
@@ -70,7 +72,7 @@ export default function NavResponsive({ navLinks }: NavResponsiveProps) {
             onOpen={toggleDrawer(anchor, true)}
             PaperProps={{
               sx: {
-                bgcolor: "primary.main",
+                bgcolor: 'primary.main',
               },
             }}
           >

@@ -42,6 +42,9 @@ function App() {
       background: {
         default: paletteType === 'light' ? '#eaeaea' : '#1b1b1b ',
       },
+      primary: {
+        main: paletteType === 'light' ? '#0288d1' : '#0F52BA ',
+      },
     },
   });
 

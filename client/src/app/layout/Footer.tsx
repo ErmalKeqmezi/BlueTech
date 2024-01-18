@@ -11,7 +11,7 @@ export default function Footer() {
     <Box
       component='footer'
       sx={{
-        marginTop: '100px', // Adjust this margin if needed
+        marginTop: '25vh', // Adjust this margin if needed
         pb: '30px',
         bgcolor: 'primary.main',
         flexShrink: 0,

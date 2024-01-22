@@ -29,7 +29,7 @@ const loginLinks = [
 const allLinks = [
   { title: 'Catalog', path: '/catalog' },
   { title: 'About', path: '/about' },
-  { title: 'Contact', path: '/contact' },
+  // { title: 'Contact', path: '/contact' },
   { title: 'Basket', path: '/basket' },
   { title: 'Register', path: '/register' },
   { title: 'Login', path: '/login' },
